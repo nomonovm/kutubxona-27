@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kutubxona | Mualliflar</title>
+    <title>Kutubxona | Kitoblar</title>
 </head>
 <body>
-    <h1>Mualliflar ro'yxati</h1>
+    <h1>Kitoblar ro'yxati</h1>
     <a href="/">Bosh sahifa</a>
     <hr>
-    {% for muallif in mualliflar %}
+    {% for kitob in kitoblar %}
         <p>{{ forloop.counter }}.
-            <a href="/mualliflar/{{ muallif.id }}/">{{ muallif.ism }}</a>
+            <a href="/kitoblar/{{ kitob.id }}/">{{ kitob.nom }}</a>
         </p>
     {% endfor %}
 </body>

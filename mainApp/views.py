@@ -35,3 +35,24 @@ def talaba_details_view(request, talaba_id):
         'talaba': talaba,
     }
     return render(request, 'talaba_details.html', context)
+
+def muallif_details_view(request, muallif_id):
+    muallif = Muallif.objects.get(id=muallif_id)
+    context = {
+        'muallif': muallif,
+    }
+    return render(request, 'muallif_details.html', context)
+
+def kitoblar_view(request):
+    kitoblar = Kitob.objects.all()
+    context = {
+        'kitoblar': kitoblar,
+    }
+    return render(request, 'kitoblar.html', context)
+
+def kitob_details_view(request, kitob_id):
+    kitob = Kitob.objects.get(id=kitob_id)
+    context = {
+        'kitob': kitob,
+    }
+    return render(request, 'kitob_details.html', context)
