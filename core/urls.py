@@ -27,5 +27,5 @@ urlpatterns = [
     path('mualliflar/', mualliflar_view, name='mualliflar'),
     path('mualliflar/<int:muallif_id>/', muallif_details_view),
     path('kitoblar/', kitoblar_view, name='kitoblar'),
-    path('talabalar/<int:kitob_id>/', kitob_details_view),
+    path('kitoblar/<int:kitob_id>/', kitob_details_view),
 ]
