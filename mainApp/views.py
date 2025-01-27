@@ -56,3 +56,10 @@ def kitob_details_view(request, kitob_id):
         'kitob': kitob,
     }
     return render(request, 'kitob_details.html', context)
+
+def recordlar_view(request):
+    recordlar = Record.objects.all()
+    context = {
+        'recordlar': recordlar,
+    }
+    return render(request, 'recordlar.html', context)

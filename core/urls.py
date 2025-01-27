@@ -28,4 +28,5 @@ urlpatterns = [
     path('mualliflar/<int:muallif_id>/', muallif_details_view),
     path('kitoblar/', kitoblar_view, name='kitoblar'),
     path('kitoblar/<int:kitob_id>/', kitob_details_view),
+    path('recordlar/', recordlar_view, name='recordlar'),
 ]

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kutubxona | Bosh sahifa</title>
+    <title>Kutubxona | Recordlar</title>
     <style>
         body {
             background-color: #333;
@@ -18,13 +18,13 @@
     </style>
 </head>
 <body>
-<h1>Kutubxona loyihasi</h1>
-<h1>Bosh sahifa</h1>
-<hr>
-<a href="/talabalar/">Talabalar</a>
-<a href="/mualliflar/">Mualliflar</a>
-<a href="/kitoblar/">Kitoblar</a>
-<a href="">Kutubxonachilar</a>
-<a href="/recordlar/">Recordlar</a>
+    <h1>Recordlar ro'yxati</h1>
+    <a href="/">Bosh sahifa</a>
+    <hr>
+    {% for record in recordlar %}
+        <p>{{ forloop.counter }}.
+            <a href="/recordlar/">{{ record }}</a>
+        </p>
+    {% endfor %}
 </body>
 </html>
