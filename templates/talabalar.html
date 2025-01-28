@@ -20,10 +20,14 @@
 <body>
     <h1>Talabalar ro'yxati</h1>
     <a href="/">Bosh sahifa</a>
+
     <hr>
     {% for talaba in talabalar %}
         <p>{{ forloop.counter }}.
             <a href="/talabalar/{{ talaba.id }}/">{{ talaba.ism }}</a>
+            <a href="/talabalar/{{ talaba.id }}/o'chirish/tasdiqlash/">
+                <button>O'chirish</button>
+            </a>
         <p>
     {% endfor %}
 </body>

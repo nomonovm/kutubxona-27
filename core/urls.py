@@ -29,4 +29,6 @@ urlpatterns = [
     path('kitoblar/', kitoblar_view, name='kitoblar'),
     path('kitoblar/<int:kitob_id>/', kitob_details_view),
     path('recordlar/', recordlar_view, name='recordlar'),
+    path("talabalar/<int:pk>/o'chirish/", talaba_delete_view),
+    path("talabalar/<int:pk>/o'chirish/tasdiqlash/", talaba_delete_confirm_view),
 ]

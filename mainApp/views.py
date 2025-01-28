@@ -1,6 +1,6 @@
 from lib2to3.fixes.fix_input import context
 
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
 
@@ -63,3 +63,15 @@ def recordlar_view(request):
         'recordlar': recordlar,
     }
     return render(request, 'recordlar.html', context)
+
+def talaba_delete_view(request, pk):
+    talaba = get_object_or_404(Talaba, id=pk)
+    talaba.delete()
+    return redirect('talabalar')
+
+def talaba_delete_confirm_view(request, pk):
+    talaba = get_object_or_404(Talaba, id=pk)
+    context = {
+        'talaba': talaba,
+    }
+    return render(request, 'talaba_delete_confirm.html', context)
