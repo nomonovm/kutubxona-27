@@ -1,5 +1,3 @@
-from lib2to3.fixes.fix_input import context
-
 from django.shortcuts import render , get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
@@ -16,9 +14,42 @@ def home_view(request):
     return render(request, 'index.html')
 
 def talabalar_view(request):
+    if request.method == "POST":
+        Talaba.objects.create(
+            ism=request.POST.get('ism'),
+            kurs=request.POST.get('kurs'),
+            guruh=request.POST.get('guruh'),
+            yosh=request.POST.get('yosh'),
+            kitob_soni=request.POST.get('kitob_soni')
+        )
+        return redirect('talabalar')
+
     talabalar = Talaba.objects.all()
+
+    search = request.GET.get('search')
+    if search is not None:
+        talabalar = talabalar.filter(ism__contains=search)
+
+    kurs = request.GET.get('kurs')
+    if kurs is not None:
+        if kurs != 'all':
+            talabalar = talabalar.filter(kurs=kurs)
+
+    guruh = request.GET.get('guruh')
+    if guruh is not None:
+        if guruh != 'all':
+            talabalar = talabalar.filter(guruh=guruh)
+
+    guruhlar = Talaba.objects.order_by('guruh').values_list('guruh', flat=True).distinct()
+    kurslar = [1, 2, 3, 4]
+
     context = {
         'talabalar': talabalar,
+        'search': search,
+        'guruhlar': guruhlar,
+        'kurs_query': kurs,
+        'guruh_query': guruh,
+        'kurslar': kurslar,
     }
     return render(request, 'talabalar.html', context)
 
@@ -44,9 +75,21 @@ def muallif_details_view(request, muallif_id):
     return render(request, 'muallif_details.html', context)
 
 def kitoblar_view(request):
+
+    if request.method == 'POST':
+        Kitob.objects.create(
+            nom=request.POST.get('nom'),
+            annotatsiya=request.POST.get('annotatsiya'),
+            janr=request.POST.get('janr'),
+            sahifa=request.POST.get('sahifa'),
+            muallif=Muallif.objects.get(id=request.POST.get('muallif_id'))
+        )
+
     kitoblar = Kitob.objects.all()
+    mualliflar = Muallif.objects.all()
     context = {
         'kitoblar': kitoblar,
+        'mualliflar': mualliflar,
     }
     return render(request, 'kitoblar.html', context)
 
@@ -75,3 +118,13 @@ def talaba_delete_confirm_view(request, pk):
         'talaba': talaba,
     }
     return render(request, 'talaba_delete_confirm.html', context)
+
+def kitob_qoshish_view(request):
+    Kitob.objects.create(
+        nom=request.POST.get('nom'),
+        annotatsiya=request.POST.get('annotatsiya'),
+        janr=request.POST.get('janr'),
+        sahifa=request.POST.get('sahifa'),
+        muallif=Muallif.objects.get(id=request.POST.get('muallif_id'))
+    )
+    return redirect('kitoblar')

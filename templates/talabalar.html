@@ -18,10 +18,60 @@
     </style>
 </head>
 <body>
-    <h1>Talabalar ro'yxati</h1>
-    <a href="/">Bosh sahifa</a>
+<h1>Talabalar ro'yxati</h1>
+<a href="/">Bosh sahifa</a>
+<hr>
+<form>
+    <input type="text" name="search" {% if search %} value="{{ search }}" {% endif %}>
+    <button>Qidirish</button>
+</form>
+<hr>
+<h2>Yangi talaba qo'shish</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Ism:</label>
+    <input type="text" name="ism" required>
+    <label>Kurs:</label>
+    <input type="number" name="kurs" value="1">
+    <br><br>
+    <label>Guruh:</label>
+    <input type="text" name="guruh" required>
+    <label>Yosh:</label>
+    <input type="number" name="yosh" required>
+    <br><br>
+    <label>Kitob soni:</label>
+    <input type="number" name="kitob_soni" value="0">
+    <button>Saqlash</button>
+</form>
+<hr>
+<h2>Filter</h2>
+<br>
+<form>
+    <label>Kurs:</label>
+    <select name="kurs">
+        <option value="all" {% if not kurs %} selected {% endif %}>Barchasi</option>
+        {% for kurs in kurslar %}
+        <option value="{{ kurs }}" {% if kurs == selected_kurs %} selected {% endif %}>
 
-    <hr>
+            {{ kurs }}-kurs
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Guruh:</label>
+    <select name="guruh">
+        <option value="all" {% if not guruh %} selected {% endif %}>Barchasi</option>
+        {% for guruh in guruhlar %}
+        <option value="{{ guruh }}" {% if guruh == selected_guruh %} selected {% endif %}>
+            {{ guruh }}
+        </option>
+        {% endfor %}
+    </select>
+    <button>Filter</button>
+    <button type="reset">Tozalash</button>
+</form>
+<br>
+<hr>
     {% for talaba in talabalar %}
         <p>{{ forloop.counter }}.
             <a href="/talabalar/{{ talaba.id }}/">{{ talaba.ism }}</a>

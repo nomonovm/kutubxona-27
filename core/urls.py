@@ -31,4 +31,5 @@ urlpatterns = [
     path('recordlar/', recordlar_view, name='recordlar'),
     path("talabalar/<int:pk>/o'chirish/", talaba_delete_view),
     path("talabalar/<int:pk>/o'chirish/tasdiqlash/", talaba_delete_confirm_view),
+    path('kitoblar/kitob_qoshish/', kitob_qoshish_view),
 ]
