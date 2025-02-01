@@ -18,13 +18,41 @@
     </style>
 </head>
 <body>
-    <h1>Recordlar ro'yxati</h1>
-    <a href="/">Bosh sahifa</a>
-    <hr>
-    {% for record in recordlar %}
-        <p>{{ forloop.counter }}.
-            <a>{{ record }}</a>
-        </p>
-    {% endfor %}
+<h1>Recordlar ro'yxati</h1>
+<a href="/">Bosh sahifa</a>
+<hr>
+{% for record in recordlar %}
+<p>{{ forloop.counter }}.
+    <a>{{ record }}</a>
+</p>
+{% endfor %}
+<hr>
+<h2>Yangi Record Qo'shish</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <label>Talaba:</label>
+    <select name="talaba_id">
+        {% for talaba in talabalar %}
+        <option value="{{ talaba.id }}">{{ talaba.ism }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Kitob:</label>
+    <select name="kitob_id">
+        {% for kitob in kitoblar %}
+        <option value="{{ kitob.id }}">{{ kitob.nom }}</option>
+        {% endfor %}
+    </select>
+    <label>Kutubxonachi:</label>
+    <select name="kutubxonachi_id">
+        {% for kutubxonachi in kutubxonachilar %}
+        <option value="{{ kutubxonachi.id }}">{{ kutubxonachi.ism }}</option>
+        {% endfor %}
+    </select>
+    <label>Qaytarilgan Sana:</label>
+    <input type="date" name="qaytarilgan_sana">
+    <button type="submit">Qo'shish</button>
+</form>
 </body>
 </html>

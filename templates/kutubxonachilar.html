@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Kutubxonachilar</title>
+</head>
+<body>
+<h1>Kutubxonachilar ro'yxati</h1>
+    <a href="/">Bosh sahifa</a>
+    <hr>
+    {% for kutubxonachi in kutubxonachilar %}
+        <p>{{ forloop.counter }}.
+            <a href="/kutubxonachilar/{{ kutubxonachi.id }}/">{{ kutubxonachi.ism }}</a>
+        </p>
+    {% endfor %}
+</body>
+</html>
