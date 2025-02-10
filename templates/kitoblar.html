@@ -18,15 +18,21 @@
     </style>
 </head>
 <body>
-    <h1>Kitoblar ro'yxati</h1>
-    <a href="/">Bosh sahifa</a>
-    <hr>
-    {% for kitob in kitoblar %}
-        <p>{{ forloop.counter }}.
-            <a href="/kitoblar/{{ kitob.id }}/">{{ kitob.nom }}</a>
-        </p>
+<h1>Kitoblar ro'yxati</h1>
+<a href="/">Bosh sahifa</a>
+<hr>
+{% for kitob in kitoblar %}
+<p>{{ forloop.counter }}.
+    <a href="/kitoblar/{{ kitoblar.id }}/">{{ kitob.nom }}</a>
+    <a href="/kitoblar/{{ kitoblar.id }}/tahrirlash/">
+        <button>Tahrirlash</button>
+    </a>
+    <a href="/kitoblar/{{ kitoblar.id }}/o'chirish/tasdiqlash/">
+        <button>O'chirish</button>
+    </a>
+<p>
     {% endfor %}
-    <hr>
+<hr>
 <a href="/kitob_qoshish/">
     <button>Yangi kitob</button>
 </a>

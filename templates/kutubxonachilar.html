@@ -6,12 +6,18 @@
 </head>
 <body>
 <h1>Kutubxonachilar ro'yxati</h1>
-    <a href="/">Bosh sahifa</a>
-    <hr>
-    {% for kutubxonachi in kutubxonachilar %}
-        <p>{{ forloop.counter }}.
-            <a href="/kutubxonachilar/{{ kutubxonachi.id }}/">{{ kutubxonachi.ism }}</a>
-        </p>
-    {% endfor %}
+<a href="/">Bosh sahifa</a>
+<hr>
+{% for kutubxonachi in kutubxonachilar %}
+<p>{{ forloop.counter }}.
+    {{ kutubxonachi.ism }}
+</p>
+{% endfor %}
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Qo'shish</button>
+</form>
 </body>
 </html>

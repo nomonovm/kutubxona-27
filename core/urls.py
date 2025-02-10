@@ -30,6 +30,7 @@ urlpatterns = [
     path('kitoblar/<int:kitob_id>/', kitob_details_view),
     path('recordlar/', recordlar_view, name='recordlar'),
     path("talabalar/<int:pk>/o'chirish/", talaba_delete_view),
+    path("talabalar/<int:pk>/tahrirlash/", talaba_update_view),
     path("talabalar/<int:pk>/o'chirish/tasdiqlash/", talaba_delete_confirm_view),
     path('kitob_qoshish/', kitob_qoshish_view, name='kitob_qoshish'),
     path('kutubxonachilar/', kutubxonachilar_view, name='kutubxonachilar'),

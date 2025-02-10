@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Kitob | O'chirish</title>
+</head>
+<body>
+<p><b>{{ kitob.nom }}</b> ma'lumotini o'chirishni tasdiqlang:</p>
+<a href="{% url 'kitoblar' %}">
+    <button>Bekor qilish</button>
+</a>
+<a href="/kitoblar/{{ kitob.id }}/o'chirish/">
+    <button>Tasdiqlash</button>
+</body>
+</html>

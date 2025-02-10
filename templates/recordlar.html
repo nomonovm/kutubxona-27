@@ -32,20 +32,23 @@
     {% csrf_token %}
 
     <label>Talaba:</label>
-    <select name="talaba_id">
+    <select name="talaba_id" required>
+        <option value=""></option>
         {% for talaba in talabalar %}
         <option value="{{ talaba.id }}">{{ talaba.ism }}</option>
         {% endfor %}
     </select>
 
     <label>Kitob:</label>
-    <select name="kitob_id">
+    <select name="kitob_id" required>
+        <option value=""></option>
         {% for kitob in kitoblar %}
         <option value="{{ kitob.id }}">{{ kitob.nom }}</option>
         {% endfor %}
     </select>
     <label>Kutubxonachi:</label>
-    <select name="kutubxonachi_id">
+    <select name="kutubxonachi_id" required>
+        <option value=""></option>
         {% for kutubxonachi in kutubxonachilar %}
         <option value="{{ kutubxonachi.id }}">{{ kutubxonachi.ism }}</option>
         {% endfor %}
